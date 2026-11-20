@@ -1,0 +1,14 @@
+# Never commit data, exports, logs or credentials
+*.csv
+*.tsv
+*.log
+*.txt
+*.xlsx
+*.zip
+*.bak*
+credentials.json
+oauth2service.json
+rclone.conf
+.DS_Store
+__pycache__/
+!config/credentials.example.json

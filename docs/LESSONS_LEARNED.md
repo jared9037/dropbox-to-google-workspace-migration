@@ -2,6 +2,23 @@
 
 The problems that came up, what caused them, and how each was solved.
 
+## The biggest one: run long copies on a dedicated, always-on machine
+
+A 16 TB copy takes days. I first ran rclone from my work laptop, and every time I closed the lid to walk
+to a meeting, move around the office or go home, the laptop slept or lost its network and the copy stopped.
+
+What fixed it:
+- **A dedicated jump box** (a separate Windows machine with a fast wired connection) that never leaves the desk.
+- **Power settings:** sleep off while plugged in, and closing the lid does nothing.
+- **Copies that are safe to restart.** Every job skips files already in Google (`--ignore-existing`), so after any
+  interruption (sleep, ISP outage, reboot) running the same command again picks up exactly where it stopped.
+- **Watch from the destination.** Counting new files in Google every few hours showed right away when a
+  machine had gone quiet, instead of finding out the next morning.
+- **One copier at a time.** When the laptop and the jump box briefly ran together, both could upload the same
+  file. The rule became: stop one before starting the other.
+
+Next time I'd go straight to an always-on machine (a jump box, server or small cloud VM) from day one.
+
 ## Google's Data import
 
 | Problem | Cause | What I did |
@@ -23,7 +40,8 @@ The problems that came up, what caused them, and how each was solved.
 | …which then made 258 files "nothing to transfer" | `--files-from` matching is case-sensitive against Dropbox's listing | Retried those by exact path with `rclone copyto` (Dropbox path lookups are case-insensitive) |
 | Retry stopped after 26 files | macOS `xargs -I` gives up on arguments over 255 bytes | `xargs -0 -n 1` instead |
 | Parallel accounts creating duplicate folders | Two accounts creating the same missing folder at once | Pre-create all missing folders from one account first; give twin-folder paths to a single account |
-| Jump box went offline overnight, twice | Sleep / ISP outages | Power settings, re-runnable jobs (`--ignore-existing`), and a Mac runner as a fallback; never run both at once |
+| Copy stopped whenever the laptop was closed or moved | Laptop slept or lost its network | Moved the copy to an always-on jump box (see the top of this page) |
+| Jump box went offline overnight, twice | Sleep settings / ISP outages | Power settings, re-runnable jobs (`--ignore-existing`), and a Mac runner as a backup; never run both at once |
 | `rclone config show <remote>` exits 0 for a missing remote | rclone v1.76 behavior | Check `rclone listremotes` instead |
 
 ## Dropbox

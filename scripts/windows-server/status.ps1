@@ -1,5 +1,5 @@
 # status.ps1 -- last progress line and latest speed per account, plus how many rclone copies are running.
-#   powershell -ExecutionPolicy Bypass -File C:\migration\scripts\windows\status.ps1
+#   powershell -ExecutionPolicy Bypass -File C:\migration\jumpbox\status.ps1
 $logs = "C:\migration\logs"
 Get-ChildItem "$logs\*.progress.txt" | Sort-Object Name | ForEach-Object {
     $u = $_.BaseName -replace '\.progress$', ''

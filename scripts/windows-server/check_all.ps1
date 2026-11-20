@@ -1,6 +1,6 @@
 # check_all.ps1 -- read-only. For every job, checks that each listed file is in Google with the
 # same size. Writes C:\migration\logs\check_summary.csv (job, files, missing).
-#   powershell -ExecutionPolicy Bypass -File C:\migration\scripts\windows\check_all.ps1
+#   powershell -ExecutionPolicy Bypass -File C:\migration\jumpbox\check_all.ps1
 $base = "C:\migration"
 $rc   = "C:\rclone\rclone.exe"
 $out  = @()

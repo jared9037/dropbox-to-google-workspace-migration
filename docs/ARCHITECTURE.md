@@ -42,7 +42,7 @@ rclone reads Dropbox as the team admin and doesn't care who last modified a file
   Google's exact folder-name casing, and splits the work into 354 jobs (~1 TB per account).
 - `precreate_folders.sh` creates the ~23k missing folders once, from one account, before any copying,
   so parallel accounts never create duplicate twin folders.
-- `run_parallel_copy.sh` (macOS) and `windows/*.ps1` (jump box) run 15 accounts in parallel, each working
+- `scripts/mac/run_parallel_copy.sh` (macOS) and `scripts/windows-server/*.ps1` (Windows jump box or server) run 15 accounts in parallel, each working
   through its own job list with `--ignore-existing`, staggered 10 minutes apart.
 
 ```mermaid

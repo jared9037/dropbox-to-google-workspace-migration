@@ -1,14 +1,19 @@
-# Never commit data, exports, logs or credentials
+# Files git should never track. A safety net in case scripts are run inside this folder:
+
+# exports, logs and reports the scripts produce
 *.csv
 *.tsv
 *.log
 *.txt
 *.xlsx
 *.zip
-*.bak*
+
+# credentials and keys (the real ones live outside the repo)
 credentials.json
 oauth2service.json
 rclone.conf
+
+# backups and system junk
+*.bak*
 .DS_Store
 __pycache__/
-!config/credentials.example.json

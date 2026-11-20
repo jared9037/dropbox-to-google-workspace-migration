@@ -17,6 +17,17 @@ then removing from Dropbox **only** what was proven to be in Google.
 | Moved with rclone (what the import couldn't reach) | ~157k files / 16.1 TB, 15 accounts in parallel, up to ~6.8 TB/day |
 | Deleted from Dropbox after verification | ~1.66M files (~40 TB), **0 errors**, 0 files lost |
 
+## The tools, in plain English
+
+| Tool | What it is |
+|---|---|
+| **Google Data import** | Google's built-in migration tool in the Workspace Admin console. You give it a list of Dropbox folders and where each should go in Google, and it copies them in the background. |
+| **[rclone](https://rclone.org)** | A free, open-source program for copying files between cloud services (Dropbox, Google Drive, OneDrive, Amazon S3 and dozens more). Think "copy and paste between clouds" that can run for days, skips files already copied, and retries on errors. |
+| **[GAM](https://github.com/GAM-team/GAM)** | A free command-line tool for Google Workspace admins. It does what the Admin console does, but from scripts. Here it listed every file in every shared drive and created the drives. |
+| **Dropbox API** | Dropbox's official way for programs to talk to it. The Python scripts use it to list files and to delete only the ones confirmed in Google. |
+| **Service account** | A "robot" Google account that an admin has approved to act for users, so scripts run without anyone's password. |
+| **Jump box** | A separate, always-on computer used only to run long jobs like the copy. |
+
 ## How it worked
 
 ```mermaid
@@ -83,6 +94,6 @@ flowchart LR
 - [Architecture](docs/ARCHITECTURE.md): the phases and the Google and Dropbox limits that shaped them.
 - [Runbook](docs/RUNBOOK.md): the commands in the order they were run.
 
-## Tools
+## Built with
 
-Python 3 (standard library only) · Bash · PowerShell · Dropbox Business API · [GAM7](https://github.com/GAM-team/GAM) (Google Workspace admin CLI) · [rclone](https://rclone.org) · Google Workspace Data import
+Python 3 (standard library only) · Bash · PowerShell

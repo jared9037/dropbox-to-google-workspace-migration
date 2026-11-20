@@ -25,7 +25,7 @@ then removing from Dropbox **only** what was proven to be in Google.
 | **[rclone](https://rclone.org)** | A free, open-source program for copying files between cloud services (Dropbox, Google Drive, OneDrive, Amazon S3 and dozens more). Think "copy and paste between clouds" that can run for days, skips files already copied, and retries on errors. |
 | **[GAM](https://github.com/GAM-team/GAM)** | A free command-line tool for Google Workspace admins. It does what the Admin console does, but from scripts. Here it listed every file in every shared drive and created the drives. |
 | **Dropbox API** | Dropbox's official way for programs to talk to it. The Python scripts use it to list files and to delete only the ones confirmed in Google. |
-| **Service account** | A "robot" Google account that an admin has approved to act for users, so scripts run without anyone's password. |
+| **Service account** | A "robot" Google account that an admin has approved to act for users, so scripts run without anyone's password. Google limits each account to about 750 GB of uploads per day, so the copy used the service account to act as 15 separate accounts at once, raising the daily limit from 750 GB to about 11 TB. |
 | **Jump box** | A separate, always-on computer used only to run long jobs like the copy. |
 
 ## How it worked
